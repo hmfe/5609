@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Autocomplete</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./js/constants.js" defer></script>
+    <script src="./js/util.js" defer></script>
+    <script src="./js/history/historyView.js" defer></script>
+    <script src="./js/history/historyController.js" defer></script>
+    <script src="./js/search/searchView.js" defer></script>
+    <script src="./js/search/searchController.js" defer></script>
+    <script src="./js/api.js" defer></script>
+    <script src="./js/model.js" defer></script>
+    <script src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <article class="search-container fullwidth">
+      <h1>Ruben's search autocomplete</h1>
+      <section id="search">
+        <span class="search-field-group">
+          <input
+            title="Search query"
+            autofocus
+            type="search"
+            id="search-input"
+            class="fullwidth gray-border"
+            tabindex="1"
+          />
+        </span>
+        <ul id="suggestions" class="gray-border hidden"></ul>
+      </section>
+      <section id="history">
+        <div id="history-upper">
+          <h2>Search history</h2>
+          <p class="remove-history small" tabindex="12">Clear search history</p>
+        </div>
+        <ul id="history-list"></ul>
+      </section>
+    </article>
+  </body>
+</html>
