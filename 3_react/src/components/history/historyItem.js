@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { formatDatetime } from "../../util";
+import { formatDatetime, wasEnterKey } from "../../util";
 
 const StyledListItem = styled.li`
   border-bottom: 2px solid #ececec;
@@ -28,14 +28,22 @@ const StyledRemoveButton = styled.p`
   cursor: pointer;
 `;
 
-const historyItem = ({ text, tabindex, at, first, onRemove }) => (
-  <StyledListItem first={first} tabIndex={tabindex}>
-    <InfoWrapper>
-      <p>{text}</p>
-      <time dateTime={at}>{formatDatetime(at)}</time>
-    </InfoWrapper>
-    <StyledRemoveButton onClick={onRemove}>&times;</StyledRemoveButton>
-  </StyledListItem>
-);
+const historyItem = ({ text, tabindex, at, first, onRemove }) => {
+  return (
+    <StyledListItem first={first}>
+      <InfoWrapper>
+        <p>{text}</p>
+        <time dateTime={at}>{formatDatetime(at)}</time>
+      </InfoWrapper>
+      <StyledRemoveButton
+        tabIndex={tabindex}
+        onClick={onRemove}
+        onKeyPress={e => wasEnterKey(e) && onRemove(text)}
+      >
+        &times;
+      </StyledRemoveButton>
+    </StyledListItem>
+  );
+};
 
 export default historyItem;

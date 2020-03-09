@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { wasEnterKey } from "../../util";
 
 const TextField = styled.input`
   box-sizing: border-box;
@@ -13,10 +14,6 @@ const TextField = styled.input`
 `;
 
 const textField = ({ text, handleChange, handleSelectResult }) => {
-  const handleKeypress = e => {
-    if (e.which === 13 || e.keyCode === 13) handleSelectResult(text);
-  };
-
   return (
     <TextField
       title="Search query"
@@ -24,7 +21,7 @@ const textField = ({ text, handleChange, handleSelectResult }) => {
       tabIndex={1}
       value={text}
       onChange={e => handleChange(e.target.value)}
-      onKeyPress={handleKeypress}
+      onKeyPress={e => wasEnterKey(e) && handleSelectResult(text)}
     />
   );
 };
