@@ -5,9 +5,10 @@ class HistoryController {
     this.view = new HistoryView(root);
     this.model.subscribe(
       whatHappened =>
-        whatHappened === HISTORY &&
-        this.view.updateHistory(this.model.getHistory())
+        whatHappened === HISTORY && this.view.updateHistory(model.getHistory())
     );
+    // In case there is initial history in local storage, view needs to update initially
+    if (model.getHistory().length) this.view.updateHistory(model.getHistory());
     this.addEventListeners();
   }
 

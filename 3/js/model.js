@@ -1,7 +1,7 @@
 class SearchModel {
-  constructor() {
+  constructor(history) {
     this.observers = [];
-    this.history = [];
+    this.history = history;
     this.suggestions = [];
     this.query = "";
     this.fetchSuggestions = generateDebouncedSuggestions(
