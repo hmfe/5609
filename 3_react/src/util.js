@@ -1,6 +1,6 @@
 // Formats data to YYYY-MM-DD, HH:MM:SS
 export const formatDatetime = d =>
-  new Date()
+  new Date(d)
     .toISOString()
     .substr(0, 19)
     .replace("T", ", ");

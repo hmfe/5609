@@ -1,4 +1,10 @@
-import React, { createContext, useReducer, useState, useRef } from "react";
+import React, {
+  createContext,
+  useReducer,
+  useState,
+  useRef,
+  useEffect
+} from "react";
 import uuid from "react-uuid";
 import { generateDebouncedSuggestions } from "./api";
 
@@ -24,8 +30,13 @@ const historyReducer = (state, action) => {
 
 const Context = createContext();
 
+let initialHistory = [];
+if (localStorage.getItem("history")) {
+  initialHistory = JSON.parse(localStorage.getItem("history"));
+}
+
 const ContextProvider = ({ children }) => {
-  const [history, dispatch] = useReducer(historyReducer, []);
+  const [history, dispatch] = useReducer(historyReducer, initialHistory);
   const [query, setQuery] = useState("");
   // To preserve data, we differentiate the fetched suggestions from the filtered ones, so that even if a user mistypes, they can still go back and the result will not have been forgotten through filtering.
   const [fetchedSuggestions, setFetchedSuggestions] = useState([]);
@@ -33,6 +44,11 @@ const ContextProvider = ({ children }) => {
   const doSearch = useRef(generateDebouncedSuggestions(setFetchedSuggestions));
 
   // *** History functionality ***
+  // Use a side effect whenever history is changed, store it in local storage
+  useEffect(() => localStorage.setItem("history", JSON.stringify(history)), [
+    history
+  ]);
+
   const addHistoryItem = result =>
     dispatch({ type: ADD_HISTORY_ITEM, payload: result });
 
