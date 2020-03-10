@@ -26,6 +26,7 @@ class HistoryView {
     resultDate.datetime = at;
     resultDate.classList.add("small");
     resultDate.innerText = formatDatetime(new Date(at));
+
     info.appendChild(resultName);
     info.appendChild(resultDate);
 
