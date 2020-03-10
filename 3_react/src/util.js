@@ -6,4 +6,4 @@ export const formatDatetime = d =>
     .replace("T", ", ");
 
 // To combat legacy, use both methods to identify key pressed
-export const wasEnterKey = e => e.which === 13 || e.keyCode === 13;
+export const isEnterKey = e => e.which === 13 || e.keyCode === 13;

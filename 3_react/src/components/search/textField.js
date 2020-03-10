@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { wasEnterKey } from "../../util";
+import { isEnterKey } from "../../util";
 
 const TextField = styled.input`
   box-sizing: border-box;
@@ -13,17 +13,15 @@ const TextField = styled.input`
   }
 `;
 
-const textField = ({ text, handleChange, handleSelectResult }) => {
-  return (
-    <TextField
-      title="Search query"
-      autoFocus
-      tabIndex={1}
-      value={text}
-      onChange={e => handleChange(e.target.value)}
-      onKeyPress={e => wasEnterKey(e) && handleSelectResult(text)}
-    />
-  );
-};
+const textField = ({ text, handleChange, handleSelectResult }) => (
+  <TextField
+    title="Search query"
+    autoFocus
+    tabIndex={1}
+    value={text}
+    onChange={e => handleChange(e.target.value)}
+    onKeyPress={e => isEnterKey(e) && handleSelectResult(text)}
+  />
+);
 
 export default textField;
