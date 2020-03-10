@@ -13,6 +13,7 @@ const debounce = (func, wait) => {
   };
 };
 
+// Generate a debounced function that through closure calls a callback when it's finally run
 export const generateDebouncedSuggestions = cb =>
   debounce(
     input =>

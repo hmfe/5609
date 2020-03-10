@@ -14,6 +14,7 @@ class SearchModel {
     this.observers.forEach(cb => cb(whatHappened));
 
   handleInputChange = query => {
+    // If query length is shorter than the older one, we don't need to fetch new suggestions, as the query will still match
     if (query.length > this.query.length) {
       this.fetchSuggestions(query);
     }

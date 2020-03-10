@@ -1,5 +1,3 @@
-// TODO: Make app data persistant
-
 const model = new SearchModel();
 
 new SearchController(document.body.querySelector("#search"), model);

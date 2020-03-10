@@ -42,6 +42,7 @@ const History = () => {
                 text={result}
                 at={at}
                 first={idx === 0}
+                // We add onto 12, as there are at most 10 search suggestions, the text field and the "Clear search history"-text that will come before
                 tabindex={12 + idx}
                 onRemove={() => removeHistoryItem(id)}
               />

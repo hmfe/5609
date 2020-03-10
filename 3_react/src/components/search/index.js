@@ -29,7 +29,8 @@ const Search = () => {
         <StyledList>
           {suggestions.map((s, idx) => (
             <SearchSuggestion
-              tabindex={idx + 2}
+              // We add 2 since the text field comes before, and has tabindex 1
+              tabindex={2 + idx}
               key={uuid()}
               text={s}
               numCharsMatching={query.length}

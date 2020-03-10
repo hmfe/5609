@@ -27,7 +27,9 @@ const Context = createContext();
 const ContextProvider = ({ children }) => {
   const [history, dispatch] = useReducer(historyReducer, []);
   const [query, setQuery] = useState("");
+  // To preserve data, we differentiate the fetched suggestions from the filtered ones, so that even if a user mistypes, they can still go back and the result will not have been forgotten through filtering.
   const [fetchedSuggestions, setFetchedSuggestions] = useState([]);
+  // We use ref to create a variable that survives rerenders. This prevents data-leaks through multiple subscriptions
   const doSearch = useRef(generateDebouncedSuggestions(setFetchedSuggestions));
 
   // *** History functionality ***

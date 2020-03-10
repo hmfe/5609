@@ -4,6 +4,7 @@ class SearchView {
     this.suggestions = root.querySelector("#suggestions");
   }
 
+  // TODO: Implement diff checking
   updateSuggestions = suggestions => {
     this.suggestions.innerHTML = "";
     if (!suggestions.length) this.suggestions.classList.add("hidden");
@@ -15,7 +16,6 @@ class SearchView {
     );
   };
 
-  // 2. Out of remaining suggestions, embolden part of result that matches query
   getSuggestionMarkup = (suggestion, matchingLenght, index) => {
     const li = document.createElement("li");
     li.tabindex = 2 + index;

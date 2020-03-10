@@ -3,6 +3,7 @@ class HistoryView {
     this.history = root.querySelector("#history-list");
   }
 
+  // TODO: Implement diff checking
   updateHistory = history => {
     this.history.innerHTML = "";
     history.forEach((h, idx) =>

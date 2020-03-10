@@ -18,6 +18,7 @@ class HistoryController {
         this.model.removeHistoryItem(e.target.parentNode.data);
     });
 
+    // Cliking remove entire history
     this.root.addEventListener("click", e => {
       this.view.isDeleteHistory(e.target) && this.model.removeHistory();
     });

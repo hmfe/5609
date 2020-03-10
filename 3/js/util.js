@@ -1,3 +1,4 @@
+// Formats data to YYYY-MM-DD, HH:MM:SS
 const formatDatetime = d =>
   new Date()
     .toISOString()
