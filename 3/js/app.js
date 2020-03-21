@@ -5,10 +5,8 @@ if (localStorage.getItem(HISTORY)) {
 
 const model = new SearchModel(history);
 
-model.subscribe(
-  whatHappened =>
-    whatHappened === HISTORY &&
-    localStorage.setItem(HISTORY, JSON.stringify(model.getHistory()))
+model.on(HISTORY_CHANGED, () =>
+  localStorage.setItem(HISTORY, JSON.stringify(model.getHistory()))
 );
 
 new SearchController(document.body.querySelector("#search"), model);
