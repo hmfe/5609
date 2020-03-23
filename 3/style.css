@@ -46,6 +46,11 @@ ul {
   display: none;
 }
 
+.plain-button {
+  border: none;
+  background: none;
+}
+
 /* Search */
 .search-container {
   max-width: 500px;
@@ -86,6 +91,7 @@ ul {
 
 .remove-history {
   text-decoration: underline;
+  font-weight: bold;
   cursor: pointer;
 }
 

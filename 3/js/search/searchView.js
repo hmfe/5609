@@ -3,6 +3,7 @@ class SearchView extends EventEmitter {
     super();
     this.input = root.querySelector("#search-input");
     this.suggestions = root.querySelector("#suggestions");
+    this.root = root;
 
     this.input.addEventListener("input", () =>
       this.emit(QUERY_CHANGED, this.input.value)
@@ -19,6 +20,16 @@ class SearchView extends EventEmitter {
         (e.which === 13 || e.keyCode === 13) &&
         this.emit(SEARCH_SUBMITTED, this.input.value)
     );
+    root.addEventListener("keydown", e => {
+      // Down arrow pressed
+      if (e.which === 40 || e.keyCode === 40) {
+        this.focusSuggestion(e.target.tabIndex + 1);
+      }
+      // Up arrow pressed
+      else if (e.which === 38 || e.keyCode === 38) {
+        this.focusSuggestion(e.target.tabIndex - 1);
+      }
+    });
   }
 
   updateSuggestions = suggestions => {
@@ -34,7 +45,7 @@ class SearchView extends EventEmitter {
 
   getSuggestionMarkup = (suggestion, matchingLenght, index) => {
     const li = document.createElement("li");
-    li.tabindex = 2 + index;
+    li.tabIndex = 2 + index;
     li.classList.add("suggestion");
     li.data = suggestion;
 
@@ -47,5 +58,20 @@ class SearchView extends EventEmitter {
     return li;
   };
 
-  resetSearch = () => (this.input.value = "");
+  resetSearch = () => {
+    this.input.value = "";
+    this.input.focus();
+  };
+
+  focusSuggestion = index => {
+    if (index < 1 || index > this.suggestions.childNodes.length + 1) return;
+    else if (index === 1) this.input.focus();
+    else this.suggestions.childNodes[index - 2].focus();
+
+    // Special case, we need to correct for the additional scroll that is added
+    // on navigation to the first suggestion.
+    if (index === 2) {
+      this.suggestions.childNodes[index - 2].scrollIntoView();
+    }
+  };
 }
