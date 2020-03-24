@@ -1,0 +1,31 @@
+body {
+  padding: 3rem;
+}
+
+button {
+  background-color: #f2a34b;
+  border: 1px solid #7d7e7f;
+  font-weight: 900;
+  transform: scale(2);
+  margin-left: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+button:before {
+  content: "Delete";
+  margin: 0 0.5rem;
+  font-size: 1rem;
+}
+
+button:after {
+  content: "\2716";
+  height: 2rem;
+  width: 2rem;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  background-color: #fff;
+  margin: 0.1rem 0.1rem 0.1rem 0;
+  clip-path: circle(1.4rem);
+}

@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
+
+/* *** GLOBAL *** */
+:root {
+  --gray: #d5d5d5;
+  --light-gray: #ececec;
+}
+
+body {
+  background-color: #f9f9f9;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* *** CLASSES *** */
+.bold {
+  font-weight: bold;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.small {
+  font-size: 0.7rem;
+}
+
+/* Search */
+.search-container {
+  max-width: 500px;
+  margin: auto;
+}
+
+#search-input:focus {
+  outline: none;
+}
+
+#suggestions {
+}
+
+.suggestion {
+  line-height: 2rem;
+}
+
+/* History */
+#history-upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove-history {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.history-item {
+}
+
+.history-item:first-child {
+  border-top: 2px solid var(--light-gray);
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+
+.info time {
+  color: #b1b1b1;
+}
+
+.remove-history-item {
+  padding-right: 0.2rem;
+  color: #b1b1b1;
+}
