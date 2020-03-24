@@ -17,13 +17,15 @@
     <script src="./js/app.js" defer></script>
   </head>
   <body>
-    <article class="search-container fullwidth">
+    <main class="search-container fullwidth">
       <h1>Ruben's search autocomplete</h1>
       <section id="search">
         <span class="search-field-group">
+          <label for="search">Search</label>
           <input
             title="Search query"
             autofocus
+            name="search"
             type="search"
             id="search-input"
             class="fullwidth gray-border"
@@ -41,6 +43,6 @@
         </div>
         <ul id="history-list"></ul>
       </section>
-    </article>
+    </main>
   </body>
 </html>

@@ -21,13 +21,15 @@ class SearchView extends EventEmitter {
         this.emit(SEARCH_SUBMITTED, this.input.value)
     );
     root.addEventListener("keydown", e => {
-      // Down arrow pressed
-      if (e.which === 40 || e.keyCode === 40) {
-        this.focusSuggestion(e.target.tabIndex + 1);
-      }
-      // Up arrow pressed
-      else if (e.which === 38 || e.keyCode === 38) {
-        this.focusSuggestion(e.target.tabIndex - 1);
+      const isArrowUp = e.which === 40 || e.keyCode === 40;
+      const isArrowDown = e.which === 38 || e.keyCode === 38;
+      if (isArrowUp || isArrowDown) {
+        // Prevent the default scrolling, so to not scroll away from the new target
+        e.preventDefault();
+        let newTargetTabIndex = e.target.tabIndex;
+        if (isArrowUp) newTargetTabIndex++;
+        else newTargetTabIndex--;
+        this.focusSuggestion(newTargetTabIndex);
       }
     });
   }
@@ -63,15 +65,11 @@ class SearchView extends EventEmitter {
     this.input.focus();
   };
 
-  focusSuggestion = index => {
-    if (index < 1 || index > this.suggestions.childNodes.length + 1) return;
-    else if (index === 1) this.input.focus();
-    else this.suggestions.childNodes[index - 2].focus();
-
-    // Special case, we need to correct for the additional scroll that is added
-    // on navigation to the first suggestion.
-    if (index === 2) {
-      this.suggestions.childNodes[index - 2].scrollIntoView();
-    }
+  focusSuggestion = newIndex => {
+    if (newIndex < 1 || newIndex > this.suggestions.childNodes.length + 1)
+      return;
+    // Special case, if we navigate up to search bar
+    else if (newIndex === 1) this.input.focus();
+    else this.suggestions.childNodes[newIndex - 2].focus();
   };
 }

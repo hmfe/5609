@@ -57,6 +57,10 @@ ul {
   margin: auto;
 }
 
+.search-container label {
+  padding-left: 1rem;
+}
+
 #search-input {
   padding: 0.5rem 1rem;
 }
@@ -112,12 +116,8 @@ ul {
   padding-right: 1rem;
 }
 
-.history-item-info time {
-  color: #b1b1b1;
-}
-
 .remove-history-item {
   padding-right: 0.2rem;
-  color: #b1b1b1;
+  color: #555;
   cursor: pointer;
 }
