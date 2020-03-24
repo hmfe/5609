@@ -1,9 +1,22 @@
-class HistoryView {
+class HistoryView extends EventEmitter {
   constructor(root) {
+    super();
     this.history = root.querySelector("#history-list");
+    root.addEventListener(
+      "click",
+      e =>
+        e.target.classList.contains("remove-history-item") &&
+        this.emit(DELETE_ITEM_CLICKED, e.target.parentNode.data)
+    );
+
+    root.addEventListener(
+      "click",
+      e =>
+        e.target.classList.contains("remove-history") &&
+        this.emit(DELETE_HISTORY_CLIKED)
+    );
   }
 
-  // TODO: Implement diff checking
   updateHistory = history => {
     this.history.innerHTML = "";
     history.forEach((h, idx) =>
@@ -39,7 +52,4 @@ class HistoryView {
 
     return li;
   };
-
-  isDeleteButton = node => node.classList.contains("remove-history-item");
-  isDeleteHistory = node => node.classList.contains("remove-history");
 }

@@ -1,10 +1,26 @@
-class SearchView {
+class SearchView extends EventEmitter {
   constructor(root) {
+    super();
     this.input = root.querySelector("#search-input");
     this.suggestions = root.querySelector("#suggestions");
+
+    this.input.addEventListener("input", () =>
+      this.emit(QUERY_CHANGED, this.input.value)
+    );
+    root.addEventListener(
+      "click",
+      e =>
+        e.target.classList.contains("suggestion") &&
+        this.emit(SEARCH_SUBMITTED, e.target.data)
+    );
+    root.addEventListener(
+      "keydown",
+      e =>
+        (e.which === 13 || e.keyCode === 13) &&
+        this.emit(SEARCH_SUBMITTED, this.input.value)
+    );
   }
 
-  // TODO: Implement diff checking
   updateSuggestions = suggestions => {
     this.suggestions.innerHTML = "";
     if (!suggestions.length) this.suggestions.classList.add("hidden");
@@ -32,6 +48,4 @@ class SearchView {
   };
 
   resetSearch = () => (this.input.value = "");
-  getQuery = () => this.input.value;
-  isSuggestion = node => node.classList.contains("suggestion");
 }
