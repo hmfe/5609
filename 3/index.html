@@ -17,13 +17,15 @@
     <script src="./js/app.js" defer></script>
   </head>
   <body>
-    <article class="search-container fullwidth">
+    <main class="search-container fullwidth">
       <h1>Ruben's search autocomplete</h1>
       <section id="search">
         <span class="search-field-group">
+          <label for="search">Search</label>
           <input
             title="Search query"
             autofocus
+            name="search"
             type="search"
             id="search-input"
             class="fullwidth gray-border"
@@ -35,10 +37,12 @@
       <section id="history">
         <div id="history-upper">
           <h2>Search history</h2>
-          <p class="remove-history small" tabindex="12">Clear search history</p>
+          <button class="remove-history plain-button small" tabindex="12">
+            Clear search history
+          </button>
         </div>
         <ul id="history-list"></ul>
       </section>
-    </article>
+    </main>
   </body>
 </html>

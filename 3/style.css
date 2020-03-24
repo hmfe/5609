@@ -46,10 +46,19 @@ ul {
   display: none;
 }
 
+.plain-button {
+  border: none;
+  background: none;
+}
+
 /* Search */
 .search-container {
   max-width: 500px;
   margin: auto;
+}
+
+.search-container label {
+  padding-left: 1rem;
 }
 
 #search-input {
@@ -86,6 +95,7 @@ ul {
 
 .remove-history {
   text-decoration: underline;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -106,12 +116,8 @@ ul {
   padding-right: 1rem;
 }
 
-.history-item-info time {
-  color: #b1b1b1;
-}
-
 .remove-history-item {
   padding-right: 0.2rem;
-  color: #b1b1b1;
+  color: #555;
   cursor: pointer;
 }

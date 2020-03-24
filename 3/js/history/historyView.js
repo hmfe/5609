@@ -27,7 +27,6 @@ class HistoryView extends EventEmitter {
   getHistoryMarkup = ({ result, at }, idx) => {
     const li = document.createElement("li");
     li.classList.add("history-item");
-    li.tabindex = 12 + idx;
     li.data = idx;
 
     const info = document.createElement("span");
@@ -43,9 +42,10 @@ class HistoryView extends EventEmitter {
     info.appendChild(resultName);
     info.appendChild(resultDate);
 
-    const removeAction = document.createElement("p");
-    removeAction.classList.add("remove-history-item");
+    const removeAction = document.createElement("button");
+    removeAction.classList.add("remove-history-item", "plain-button");
     removeAction.innerHTML = "&times;";
+    removeAction.tabIndex = 12 + idx;
 
     li.appendChild(info);
     li.appendChild(removeAction);
